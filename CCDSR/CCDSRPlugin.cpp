@@ -1,11 +1,11 @@
 //CCDS-R PlugIn © 2024 by Joshua Seagrave is licensed under CC BY-NC-SA 4.0. To view a copy of this license, visit https://creativecommons.org/licenses/by-nc-sa/4.0/
 #include "StdAfx.h"
-#include "TDBCallsignPlugin.h"
+#include "CCDSRPlugin.h"
 
 const int TAG_ITEM_CCDSR_CALLSIGN = 1; // ID for the CALLSIGN/SQUAWK tag item.
 const int TAG_ITEM_CCDSR_LABEL = 2;    // ID for the LABEL item.
 
-CCDSRCallsignPlugIn* pMyPlugIn = NULL;
+CCDSRPlugIn* pMyPlugIn = NULL;
 
 Json::Value root = NULL;
 Json::Value labels = NULL;
@@ -24,7 +24,7 @@ bool isValidData(Json::Value _value)
     return true;
 }
 
-CCDSRCallsignPlugIn::CCDSRCallsignPlugIn(void)
+CCDSRPlugIn::CCDSRPlugIn(void)
     : CPlugIn(EuroScopePlugIn::COMPATIBILITY_CODE,
         "CCDS-R Plugin",
         "1.0.0",
@@ -108,7 +108,7 @@ CCDSRCallsignPlugIn::CCDSRCallsignPlugIn(void)
     );    
 }
 
-void CCDSRCallsignPlugIn::OnGetTagItem(           // this function gets called for every aircraft every single time the position updates.
+void CCDSRPlugIn::OnGetTagItem(           // this function gets called for every aircraft every single time the position updates.
     EuroScopePlugIn::CFlightPlan _plan,         // it needs to be fairly quick.
     EuroScopePlugIn::CRadarTarget _target,
     int _itemCode,
@@ -125,7 +125,7 @@ void CCDSRCallsignPlugIn::OnGetTagItem(           // this function gets called f
     {
         case TAG_ITEM_CCDSR_LABEL:
 
-            *_pColorCode = EuroScopePlugIn::TAG_COLOR_DEFAULT; // using a custom RGB.
+            *_pColorCode = EuroScopePlugIn::TAG_COLOR_DEFAULT;
 
             // squawk found in JSON list of specials?
             if (labels && labels.isMember(squawk)) 
@@ -166,7 +166,7 @@ void CCDSRCallsignPlugIn::OnGetTagItem(           // this function gets called f
 void __declspec (dllexport)
 EuroScopePlugInInit(EuroScopePlugIn::CPlugIn** ppPlugInInstance)
 {
-    *ppPlugInInstance = pMyPlugIn = new CCDSRCallsignPlugIn;
+    *ppPlugInInstance = pMyPlugIn = new CCDSRPlugIn;
 }
 
 void __declspec (dllexport)
