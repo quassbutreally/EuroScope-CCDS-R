@@ -1,11 +1,12 @@
 // CCDS-R PlugIn © 2024 by Joshua Seagrave is licensed under CC BY-NC-SA 4.0. To view a copy of this license, visit https://creativecommons.org/licenses/by-nc-sa/4.0/
-#include "StdAfx.h"
-#pragma once
 
-class CCDSRCallsignPlugIn : public EuroScopePlugIn::CPlugIn
+#pragma once
+#include "StdAfx.h"
+
+class CCDSRPlugIn : public EuroScopePlugIn::CPlugIn
 {
 public:
-	CCDSRCallsignPlugIn(void);
+	CCDSRPlugIn(void);
 
 
 	void OnGetTagItem(

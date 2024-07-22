@@ -21,15 +21,15 @@
     <ClInclude Include="StdAfx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TDBCallsignPlugin.h">
+    <ClInclude Include="CCDSRPlugin.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="TDBCallsignPlugin.cpp">
+    <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="stdafx.cpp">
+    <ClCompile Include="CCDSRPlugin.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
