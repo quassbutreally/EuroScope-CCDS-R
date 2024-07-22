@@ -11,9 +11,9 @@ Json::Value root = NULL;
 Json::Value labels = NULL;
 Json::Value callsigns = NULL; // initialization of variables, hopefully to be overwritten later, so we can check for thruthiness.
 
-bool isValidData(Json::Value _value)
+static bool isValidData(Json::Value _value)
 {
-    for (auto el : _value) // iterate through every value in the JSON object.
+    for (auto& el : _value) // iterate through every value in the JSON object.
     {
         if (el.asString().length() > 7 || el.asString().length() == 0) //CCDS labels and callsigns cannot exceed 7 characters and must have at least one character.
         {
