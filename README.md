@@ -36,7 +36,7 @@ I've developed CCDS-R for EuroScope to be completely customisable for the user. 
 
 Installation is wonderfully simple.
 
-1. [Download the latest release](https://github.com/quassbutreally/EuroScope-CCDS-R)
+1. [Download the latest release](https://github.com/quassbutreally/EuroScope-CCDS-R/releases/latest)
 2. Extract the `CCDS-R` folder to your `EuroScope\UK\Data\Plugins` folder
 3. OPTIONAL: if you wish to use the custom tag families, extract the `tags.txt` file to your `EuroScope\UK\Data\Settings` folder and overwrite the existing file. **_MAKE A BACKUP OF THE EXISTING FILE FIRST._**
 4. You're done!
