@@ -1,9 +1,6 @@
+// CCDS-R PlugIn © 2024 by Joshua Seagrave is licensed under CC BY-NC-SA 4.0. To view a copy of this license, visit https://creativecommons.org/licenses/by-nc-sa/4.0/
+#include "StdAfx.h"
 #pragma once
-
-#include <EuroScopePlugIn.h>
-#include <string>
-#include <json/json.h>
-#include <fstream>
 
 class CCDSRCallsignPlugIn : public EuroScopePlugIn::CPlugIn
 {

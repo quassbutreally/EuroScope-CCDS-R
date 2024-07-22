@@ -1,4 +1,5 @@
-#include "pch.h"
+//CCDS-R PlugIn © 2024 by Joshua Seagrave is licensed under CC BY-NC-SA 4.0. To view a copy of this license, visit https://creativecommons.org/licenses/by-nc-sa/4.0/
+#include "StdAfx.h"
 #include "TDBCallsignPlugin.h"
 
 const int TAG_ITEM_CCDSR_CALLSIGN = 1; // ID for the CALLSIGN/SQUAWK tag item.
@@ -28,7 +29,7 @@ CCDSRCallsignPlugIn::CCDSRCallsignPlugIn(void)
         "CCDS-R Plugin",
         "1.0.0",
         "Joshua Seagrave",
-        "If you're using this, there's something wrong with you.") // lol.
+        "CC BY-NC-SA 4.0") // lol.
 {
 
     RegisterTagItemType("CCDS-R Callsign/Squawk", TAG_ITEM_CCDSR_CALLSIGN); // registering tag items and names in ES.
@@ -130,7 +131,7 @@ void CCDSRCallsignPlugIn::OnGetTagItem(           // this function gets called f
             if (labels && labels.isMember(squawk)) 
             {
                 // display the correlated CCDS-R label.
-                snprintf(_itemString, 16, labels[squawk].asCString());
+                snprintf(_itemString, 16, "%s", labels[squawk].asCString());
                 return; // done.
             }
 
@@ -142,7 +143,7 @@ void CCDSRCallsignPlugIn::OnGetTagItem(           // this function gets called f
             if (callsigns && callsigns.isMember(squawk)) 
             {
                 // display the correlated CCDS-R value.
-                snprintf(_itemString, 16, callsigns[squawk].asCString());
+                snprintf(_itemString, 16, "%s", callsigns[squawk].asCString());
                 return; // done.
             }
 
@@ -150,12 +151,12 @@ void CCDSRCallsignPlugIn::OnGetTagItem(           // this function gets called f
             if (_tagData == EuroScopePlugIn::TAG_DATA_CORRELATED)
             {
                 // if the aircraft is correlated, we want to show the callsign.
-                snprintf(_itemString, 16, _target.GetCallsign()); 
+                snprintf(_itemString, 16, "%s", _target.GetCallsign());
                 return; // done.
             }
 
             // if the aircraft is not correlated, we want to show the squawk.
-            snprintf(_itemString, 16, squawk.c_str());            
+            snprintf(_itemString, 16, "%s", squawk.c_str());
             return; // done.
     }
 
