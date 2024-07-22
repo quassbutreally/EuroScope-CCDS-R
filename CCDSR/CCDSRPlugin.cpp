@@ -139,19 +139,19 @@ void CCDSRPlugIn::OnGetTagItem(           // this function gets called for every
 
         case TAG_ITEM_CCDSR_CALLSIGN:
 
-            // squawk found in JSON list of specials?
-            if (callsigns && callsigns.isMember(squawk)) 
-            {
-                // display the correlated CCDS-R value.
-                snprintf(_itemString, 16, "%s", callsigns[squawk].asCString());
-                return; // done.
-            }
-
             // is the target correlated to a flight plan?
             if (_tagData == EuroScopePlugIn::TAG_DATA_CORRELATED)
             {
                 // if the aircraft is correlated, we want to show the callsign.
                 snprintf(_itemString, 16, "%s", _target.GetCallsign());
+                return; // done.
+            }
+
+            // squawk found in JSON list of specials?
+            if (callsigns && callsigns.isMember(squawk)) 
+            {
+                // display the correlated CCDS-R value.
+                snprintf(_itemString, 16, "%s", callsigns[squawk].asCString());
                 return; // done.
             }
 
