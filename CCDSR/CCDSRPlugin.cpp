@@ -68,8 +68,8 @@ CCDSRPlugIn::CCDSRPlugIn(void)
             "Invalid JSON found. Custom Code-callsign conversions and labels will be non-functional.",
             true,
             true,
-            false,
-            false,
+            true,
+            true,
             false);
 
         return; // done.
@@ -108,7 +108,7 @@ CCDSRPlugIn::CCDSRPlugIn(void)
     );    
 }
 
-void CCDSRPlugIn::OnGetTagItem(           // this function gets called for every aircraft every single time the position updates.
+void CCDSRPlugIn::OnGetTagItem(                 // this function gets called for every aircraft every single time the position updates.
     EuroScopePlugIn::CFlightPlan _plan,         // it needs to be fairly quick.
     EuroScopePlugIn::CRadarTarget _target,
     int _itemCode,
@@ -125,7 +125,7 @@ void CCDSRPlugIn::OnGetTagItem(           // this function gets called for every
     {
         case TAG_ITEM_CCDSR_LABEL:
 
-            *_pColorCode = EuroScopePlugIn::TAG_COLOR_DEFAULT;
+            *_pColorCode = EuroScopePlugIn::TAG_COLOR_DEFAULT; // Make this customisable in future?
 
             // squawk found in JSON list of specials?
             if (labels && labels.isMember(squawk)) 
