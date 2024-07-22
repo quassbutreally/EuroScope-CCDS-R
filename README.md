@@ -4,10 +4,10 @@
 
 CCDS-R for EuroScope intends to bring a representation of the real-world CCDS-R system to EuroScope, primarily for VATSIM UK users, for a more authentic controlling experience. Some features include:
 
--Specific pre-determined code-callsign conversion for specific squawks, customisable via a JSON file
--Custom tag families that use the CCDS-R tag items
--Custom target data block (TDB) alerts, customisable via a JSON file
--**_COMING SOON:_** customisable TDB color alerts, such as STCA, oCAT, CAIT etc.
+- Specific pre-determined code-callsign conversion for specific squawks, customisable via a JSON file
+- Custom tag families that use the CCDS-R tag items
+- Custom target data block (TDB) alerts, customisable via a JSON file
+- **_COMING SOON:_** customisable TDB color alerts, such as STCA, oCAT, CAIT etc.
 
 ## Contents
 [FAQs](#faq)  
@@ -38,7 +38,7 @@ Installation is wonderfully simple.
 
 1. [Download the latest release](https://github.com/quassbutreally/EuroScope-CCDS-R/releases/latest)
 2. Extract the `CCDS-R` folder to your `EuroScope\UK\Data\Plugins` folder
-3. OPTIONAL: if you wish to use the custom tag families, extract the `tags.txt` file to your `EuroScope\UK\Data\Settings` folder and overwrite the existing file. **_MAKE A BACKUP OF THE EXISTING FILE FIRST._**
+3. Extract the `tags.txt` file to your `EuroScope\UK\Data\Settings` folder and overwrite the existing file. **_MAKE A BACKUP OF THE EXISTING FILE FIRST._**
 4. You're done!
 
 # Customisation
