@@ -29,7 +29,7 @@ CCDSRPlugIn::CCDSRPlugIn(void)
         "CCDS-R Plugin",
         "1.0.0",
         "Joshua Seagrave",
-        "CC BY-NC-SA 4.0") // lol.
+        "CC BY-NC-SA 4.0")
 {
 
     RegisterTagItemType("CCDS-R Callsign/Squawk", TAG_ITEM_CCDSR_CALLSIGN); // registering tag items and names in ES.
