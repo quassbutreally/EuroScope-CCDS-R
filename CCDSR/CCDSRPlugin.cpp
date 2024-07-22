@@ -5,6 +5,8 @@
 const int TAG_ITEM_CCDSR_CALLSIGN = 1; // ID for the CALLSIGN/SQUAWK tag item.
 const int TAG_ITEM_CCDSR_LABEL = 2;    // ID for the LABEL item.
 
+int TAG_LABEL_COLOUR = EuroScopePlugIn::TAG_COLOR_DEFAULT;
+
 CCDSRPlugIn* pMyPlugIn = NULL;
 
 Json::Value root = NULL;
@@ -90,6 +92,25 @@ CCDSRPlugIn::CCDSRPlugIn(void)
 
         return; // done.
     };
+    try {
+        if (root["colours"]["label-colour"])
+        {
+            TAG_LABEL_COLOUR = std::stoi(root["colours"]["label-colour"].asString(), nullptr, 16);
+        }
+    }
+    catch (...)
+    {
+        pMyPlugIn->DisplayUserMessage( // send a message to the user notifying them of the problem.
+            "CCDS-R",
+            "",
+            "Invalid colour data found in the JSON file. Reverting to default colours.",
+            true,
+            true,
+            true,
+            true,
+            false
+        );
+    }
 
     labels = root["labels"];
     callsigns = root["callsigns"];  // we've successfully validated everything, so we can overwrite these variables now.
@@ -125,7 +146,8 @@ void CCDSRPlugIn::OnGetTagItem(                 // this function gets called for
     {
         case TAG_ITEM_CCDSR_LABEL:
 
-            *_pColorCode = EuroScopePlugIn::TAG_COLOR_DEFAULT; // Make this customisable in future?
+            *_pColorCode = TAG_LABEL_COLOUR ? EuroScopePlugIn::TAG_COLOR_RGB_DEFINED : EuroScopePlugIn::TAG_COLOR_DEFAULT; // Make this customisable in future?
+            *_pRGB = TAG_LABEL_COLOUR;
 
             // squawk found in JSON list of specials?
             if (labels && labels.isMember(squawk)) 
