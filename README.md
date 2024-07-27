@@ -58,7 +58,7 @@ There is an error in the `conversions.json` file that is preventing it from bein
 One or more of your custom labels or callsigns is either empty or too long. The maximum is 7 characters.
 
 ## EuroScope crashes when I load the plugin / EuroScope tells me CCDS-R has encountered an exception
-That shouldn't happen. Save the log, and raise an issue with the log file and as much information as you can remember about what happened.
+That shouldn't happen. Save the log, and [raise an issue](https://github.com/quassbutreally/EuroScope-CCDS-R/issues/new) with the log file and as much information as you can remember about what happened.
 
 ## I'm using the custom tag families, but I just have question marks
 The plugin hasn't loaded or hasn't loaded correctly. Unload and reload it.
