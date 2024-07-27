@@ -60,6 +60,7 @@ CCDSRPlugIn::CCDSRPlugIn(void)
     try
     {
         conversionsFile >> root; // parse JSON from file to a root object. will raise a Json::Exception if the JSON object is invalid.
+        conversionsFile.close();
     }
 
     catch (Json::Exception ) // catch the exception and send a message to the user notifying them of the problem.
@@ -73,6 +74,8 @@ CCDSRPlugIn::CCDSRPlugIn(void)
             true,
             true,
             false);
+
+        conversionsFile.close();
 
         return; // done.
     }
@@ -181,12 +184,13 @@ void CCDSRPlugIn::OnGetTagItem(                 // this function gets called for
             }
 
             // squawk found in JSON list of specials?
-            if (callsigns && callsigns.isMember(squawk)) 
+            if (callsigns && callsigns.isMember(squawk))
             {
                 // display the correlated CCDS-R value.
                 snprintf(_itemString, 16, "%s", callsigns[squawk].asCString());
                 return; // done.
             }
+
 
             // if the aircraft is not correlated, we want to show the squawk.
             snprintf(_itemString, 16, "%s", squawk.c_str());
