@@ -26,10 +26,24 @@ static bool isValidData(Json::Value _value)
     return true;
 }
 
+static std::filesystem::path fetchDllPath()
+{
+    char DllPathFile[_MAX_PATH];
+    if (GetModuleFileNameA(HINSTANCE(&__ImageBase), DllPathFile, sizeof(DllPathFile)) == 0) {
+        return {};  // Return empty if GetModuleFileNameA fails
+    }
+
+    // Use filesystem to get the parent directory path
+    std::filesystem::path dllPath = DllPathFile;
+
+    auto p = dllPath.parent_path();
+    return p;
+}
+
 CCDSRPlugIn::CCDSRPlugIn(void)
     : CPlugIn(EuroScopePlugIn::COMPATIBILITY_CODE,
         "CCDS-R Plugin",
-        "1.0.0",
+        "1.1.0",
         "Joshua Seagrave",
         "CC BY-NC-SA 4.0")
 {
@@ -37,7 +51,7 @@ CCDSRPlugIn::CCDSRPlugIn(void)
     RegisterTagItemType("CCDS-R Callsign/Squawk", TAG_ITEM_CCDSR_CALLSIGN); // registering tag items and names in ES.
     RegisterTagItemType("CCDS-R Label", TAG_ITEM_CCDSR_LABEL);
 
-    std::string filePath = "UK/Data/Plugin/CCDS-R/Settings/conversions.json"; // local path to the CCDS-R config file.
+    auto filePath = fetchDllPath() += "\\Settings\\conversions.json"; // local path to the CCDS-R config file.
 
     std::ifstream conversionsFile(filePath, std::ifstream::binary); // opens a filestream to read the JSON file.
 
@@ -46,7 +60,7 @@ CCDSRPlugIn::CCDSRPlugIn(void)
         pMyPlugIn->DisplayUserMessage( // send a message to the user notifying them of the problem.
             "CCDS-R",
             "",
-            ("Error finding " + filePath + ". Custom Code-callsign conversions and labels will be non-functional.").c_str(),
+            ("Error finding " + filePath.string() + ". Custom Code-callsign conversions and labels will be non-functional.").c_str(),
             true,
             true,
             true,

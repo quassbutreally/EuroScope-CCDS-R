@@ -13,5 +13,8 @@
 #include <string>
 #include <json/json.h>
 #include <fstream>
+#include <filesystem>
+#include <Windows.h>
 
+extern "C" IMAGE_DOS_HEADER __ImageBase;
 #endif //PCH_H
